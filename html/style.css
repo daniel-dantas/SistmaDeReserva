@@ -1,0 +1,140 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightgray;
+}
+.content{
+    background-color: white;
+    border-radius: 15px;
+    width: 960px;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.content::before{
+    content: "" ;
+    position: absolute;
+    background-color: green;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+
+    left: 0%;
+}
+.title{
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.title-cadastro{
+    color: white;
+}
+.btn{
+    border-radius: 5px;
+    font size: 6px;
+    padding: 8px 45px;
+    border: 1px solid white;
+    cursor: pointer;
+    width: 150px;
+    align-self: center;
+    background-color: lightgrey;
+    border: 1px solid white;
+    margin-top: 5px;
+}
+.btn:hover{
+    background-color: grey;
+    border: 1px solid white;
+    color: honeydew;
+
+}
+.content-1{
+    display: flex;
+}
+.content-1 .coluna-2{
+    z-index: 11;
+}
+.coluna-1{
+    text-align: center;
+    width: 40%;
+    z-index: 10;
+}
+.coluna-2{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    text-align: center;
+}
+.form input{
+    height: 45px;
+    border: none;
+    background-color: honeydew;
+    margin: 8px;
+}
+.content-2{
+    position: absolute;
+    display: flex;
+}
+.content-2 .coluna-1{
+    order:2;
+   z-index: -1;
+}
+.content-2 .coluna-2{
+    order:1;
+    z-index: -1;
+}
+.senha{
+    color:grey;
+    font-size:14px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+
+
+
+.entrar-in-js .content-1 .coluna-1,
+.entrar-in-js .content-1 .coluna-2{
+    z-index: -1;
+}
+
+.entrar-in-js .content-2 .coluna-1,
+.entrar-in-js .content-2 .coluna-2{
+    z-index: 11;
+}
+
+.entrar-in-js .content::before{
+    left: 60%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+.cadastrar-up-js .content-2 .coluna-1,
+.cadastrar-up-js .content-2 .coluna-2{
+    z-index: -1;
+}
+
+.entrar-up-js .content-1 .coluna-1,
+.entrar-up-js .content-1 .coluna-2{
+    z-index: 11;
+}
