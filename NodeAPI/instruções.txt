@@ -1,0 +1,1 @@
+Criar um banco de dados Postgres chamado SistemaDeReserva antes de rodar o servidor
