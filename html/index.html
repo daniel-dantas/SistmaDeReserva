@@ -13,10 +13,10 @@
             </div>
             <div class="coluna-2">
                 <h2 class="title">Crie sua Conta</h2>
-                <form class="form">
-                    <input type="text" placeholder=" Nome">
-                    <input type="email" placeholder=" Email">
-                    <input type="password" placeholder=" Senha">
+                <form class="form" method="POST" action="localhost:8000/professores/create">
+                    <input type="text" placeholder=" Nome" name="nome">
+                    <input type="email" placeholder=" Email" name="email">
+                    <input type="password" placeholder=" Senha" name="senha">
                     <button class="btn">Cadastrar</button>
                    
                 </form>
@@ -41,5 +41,28 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    
+    <script>
+        // Pequeno script teste para carregar dados da Api REST
+        var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8000/professores/search",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "processData": false,
+        "data": "{\n\t\"matricula\": \"654123\"\n}"
+        }
+
+        $.ajax(settings).done(function (response) {
+        console.log(response);
+        });
+    </script>
 </body>
 </html>

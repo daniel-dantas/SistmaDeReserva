@@ -7,6 +7,14 @@ router.get('/', (req,res)=>{
     return res.send('Lista de alunos')
 })
 
+router.post('/create', (req,res)=>{
+
+
+    return res.send()
+
+
+})
+
 router.get('/add', (req,res)=>{
     return res.send('Adicionando')
 })

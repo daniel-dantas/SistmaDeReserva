@@ -1,17 +1,23 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
+// Config
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(cors())
 // Controladores
-const rotaProfessor = require('./routes/professor')
-const rotaAluno = require('./routes/aluno')
-const rotaReserva = require('./routes/reserva')
-const rotaProjetore = require('./routes/projetor')
-const rotaAmbiente = require('./routes/ambiente')
-const rotaAdmin = require('./routes/admin')
+const rotaProfessor = require('./controllers/professor')
+const rotaAluno = require('./controllers/aluno')
+const rotaReserva = require('./controllers/reserva')
+const rotaProjetore = require('./controllers/projetor')
+const rotaAmbiente = require('./controllers/ambiente')
+const rotaAdmin = require('./controllers/admin')
 
 // Rotas
 app.get('/', function (req, res) {
-    res.send('API para um sistema de reserva')
+    res.send('Api REST')
 })
 
 app.use('/professores', rotaProfessor)
