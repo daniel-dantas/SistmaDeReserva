@@ -1,15 +1,20 @@
 const db = require('./db')
-
+const Usuario = require('./Usuario')
 class Aluno extends db.Model{}
 
 Aluno.init({
-    nome: db.DataTypes.STRING,
-    email: db.DataTypes.STRING,
-    senha: db.DataTypes.STRING,
-    matricula: db.DataTypes.STRING,
-    curso: db.DataTypes.STRING
+    matricula: {
+        type: db.Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
+        references: {
+            model: Usuario,
+            key: 'matricula'
+        }
+    },
+    curso: {type: db.DataTypes.STRING, allowNull: false}
 },{ sequelize: db.sequelize, modelName: 'aluno'})
 
-// db.sequelize.sync({force: true})
+// Aluno.sync({force: true})
 
 module.exports = Aluno

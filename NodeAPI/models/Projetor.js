@@ -3,11 +3,11 @@ const db = require('./db')
 class Projetor extends db.Model{}
 
 Projetor.init({
-    codigo: db.DataTypes.STRING,
-    observacao: db.DataTypes.TEXT
+    codigo: {type: db.DataTypes.STRING, primaryKey: true, allowNull: false},
+    observacao: {type: db.DataTypes.TEXT, allowNull: false}
     
 },{ sequelize: db.sequelize, modelName: 'projetor'})
 
-db.sequelize.sync({force: true})
+// Projetor.sync({force: true})
 
 module.exports = Projetor

@@ -1,13 +1,20 @@
 const db = require('./db')
+const Usuario = require('./Usuario')
 
 class Professor extends db.Model{}
 
 Professor.init({
-    nome: db.DataTypes.STRING,
-    email: db.DataTypes.STRING,
-    senha: db.DataTypes.STRING,
-    matricula: db.DataTypes.STRING,
-    disciplinas: db.DataTypes.TEXT
+    
+    matricula:{
+        type: db.DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+        references: {
+            model: Usuario,
+            key: 'matricula'
+        }
+    },
+    disciplinas: {type: db.DataTypes.TEXT, allowNull: false}
 },{ sequelize: db.sequelize, modelName: 'professor'})
 
 // db.sequelize.sync({force: true})
