@@ -9,6 +9,6 @@ Usuario.init({
     matricula: {type: db.DataTypes.STRING, primaryKey: true}
 }, { sequelize: db.sequelize, modelName: 'usuario'})
 
-// db.sequelize.sync({force: true})
+// Usuario.sync({force: true})
 
 module.exports = Usuario

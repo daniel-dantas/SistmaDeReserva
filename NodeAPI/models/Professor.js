@@ -17,6 +17,6 @@ Professor.init({
     disciplinas: {type: db.DataTypes.TEXT, allowNull: false}
 },{ sequelize: db.sequelize, modelName: 'professor'})
 
-// db.sequelize.sync({force: true})
+// Professor.sync({force: true})
 
 module.exports = Professor

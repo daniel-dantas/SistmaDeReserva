@@ -13,5 +13,7 @@ const db = {
     DataTypes: DataTypes
 }
 
+db.sequelize.sync()
+
 module.exports = db
 

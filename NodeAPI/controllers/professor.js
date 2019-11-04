@@ -23,6 +23,7 @@ router.post('/create', async (req,res)=>{
             email: req.body.email
         }).then((user)=>{
             Professor.create({matricula: matricula, disciplinas: req.body.disciplinas}).then((prof)=>{
+                user.senha = ""
                 return res.send({user: user, disciplinas: prof.disciplinas})
             })
         }).catch((error)=>{
@@ -34,6 +35,7 @@ router.post('/create', async (req,res)=>{
 })
 
 router.post('/delete', async (req,res)=>{
+
     await Professor.destroy({
         where: {matricula: req.body.matricula}
     }).then(()=>{

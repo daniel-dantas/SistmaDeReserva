@@ -25,7 +25,7 @@ app.use('/alunos', rotaAluno)
 app.use('/reservas', rotaReserva)
 app.use('/projetores', rotaProjetore)
 app.use('/ambientes', rotaAmbiente)
-app.use('/admmins', rotaAdmin)
+app.use('/admins', rotaAdmin)
 
 app.listen(8000, function (params) {
     console.log('Servidor Rodando na porta 8000')
