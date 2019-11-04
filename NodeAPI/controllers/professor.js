@@ -4,7 +4,6 @@ const Usuario = require('../models/Usuario')
 const router = express.Router()
 
 
-
 router.post('/search',async (req,res)=>{
      await Professor.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','disciplinas']}).then(prof => {
         Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['nome', 'email']}).then(user => {
