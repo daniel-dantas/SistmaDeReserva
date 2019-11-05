@@ -8,10 +8,10 @@ Reserva.init({
     horarioInicio: {type: db.DataTypes.DATE, allowNull: false},
     horarioFim: {type: db.DataTypes.DATE, allowNull: true},
     codigoDoAmbiente: {
-        type: db.DataTypes.INTEGER,
+        type: db.DataTypes.STRING,
         references: {
             model: Ambiente,
-            key: 'codigo',
+            key: 'codigo'
         }
     },
     codigoDoUsuario:{
