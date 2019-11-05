@@ -8,10 +8,11 @@ class Reserva extends db.Model{}
 
 Reserva.init({
     ID: {type: db.DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
-    horarioInicio: {type: db.DataTypes.TIME, allowNull: false},
-    horarioFim: {type: db.DataTypes.TIME, allowNull: true},
+    horarioInicio: {type: db.DataTypes.DATE, primaryKey: true, allowNull: false},
+    horarioFim: {type: db.DataTypes.DATE, primaryKey: true, allowNull: true},
     codigoDoAmbiente: {
         type: db.DataTypes.STRING,
+        allowNull: true,
         references: {
             model: Ambiente,
             key: 'codigo'
@@ -19,13 +20,15 @@ Reserva.init({
     },
     codigoDoProjetor:{
         type: db.DataTypes.STRING,
+        allowNull: true,
         references: {
             model: Projetor,
             key: 'codigo'
         }
     },
-    codigoDoUsuario:{
+    matriculaDoUsuario:{
         type: db.DataTypes.STRING,
+        allowNull: false,
         references: {
             model: Usuario,
             key: 'matricula'
