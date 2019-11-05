@@ -3,8 +3,12 @@ const Reserva = require('../models/Reserva')
 
 const router = express.Router()
 
-router.get('/', (req,res)=>{
-    return res.send('lista de reservas')
+router.post('/create', (req,res) => {
+   Reserva.create(req.body).then(reserva => {
+       return res.send(reserva)
+   }).catch(erro => {
+       return res.send(null)
+   })
 })
 
 module.exports = router
