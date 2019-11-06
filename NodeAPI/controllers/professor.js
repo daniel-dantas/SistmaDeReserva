@@ -26,7 +26,7 @@ router.post('/create', async (req,res)=>{
                 return res.send({user: user, disciplinas: prof.disciplinas})
             })
         }).catch((error)=>{
-            return res.send('Nao deu certo: '+error)
+            return res.send(null)
         })
     
     
