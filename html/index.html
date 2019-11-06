@@ -48,16 +48,16 @@
     
     <script>
         // Pequeno script teste para carregar dados da Api REST
-        var settings = {
+                var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8000/professores/search",
-        "method": "POST",
+        "url": "http://localhost:8000/ambientes/read",
+        "method": "GET",
         "headers": {
             "content-type": "application/json"
         },
         "processData": false,
-        "data": "{\n\t\"matricula\": \"654123\"\n}"
+        "data": ""
         }
 
         $.ajax(settings).done(function (response) {

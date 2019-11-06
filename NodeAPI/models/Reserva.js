@@ -7,11 +7,10 @@ const Projetor = require('./Projetor')
 class Reserva extends db.Model{}
 
 Reserva.init({
-    horarioInicio: {type: db.DataTypes.DATE, primaryKey: true, allowNull: false},
-    horarioFim: {type: db.DataTypes.DATE, primaryKey: true, allowNull: false},
+    horarioInicio: {type: db.DataTypes.DATE, allowNull: false},
+    horarioFim: {type: db.DataTypes.DATE, allowNull: false},
     codigoDoAmbiente: {
         type: db.DataTypes.STRING,
-        primaryKey: true,
         allowNull: false,
         references: {
             model: Ambiente,
