@@ -7,13 +7,14 @@ const cors = require('cors')
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(cors())
+    
 // Controladores
-const rotaProfessor = require('./controllers/professor')
-const rotaAluno = require('./controllers/aluno')
-const rotaReserva = require('./controllers/reserva')
-const rotaProjetore = require('./controllers/projetor')
-const rotaAmbiente = require('./controllers/ambiente')
-const rotaAdmin = require('./controllers/admin')
+const rotaProfessor = require('./routes/professor')
+const rotaAluno = require('./routes/aluno')
+const rotaReserva = require('./routes/reserva')
+const rotaProjetore = require('./routes/projetor')
+const rotaAmbiente = require('./routes/ambiente')
+const rotaAdmin = require('./routes/admin')
 
 // Rotas
 app.get('/', function (req, res) {
