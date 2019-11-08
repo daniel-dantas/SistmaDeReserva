@@ -9,7 +9,7 @@ router.post('/create', async (req,res)=>{
     await Projetor.create(req.body).then(projetor =>{
         return res.send(projetor)
     }).catch((erro)=>{
-        return res.send(null)
+        return res.send(false)
     })
 
 })
@@ -17,7 +17,7 @@ router.post('/create', async (req,res)=>{
 router.post('/search',async (req,res)=>{
     await Projetor.findOne({where: {codigo: req.body.codigo}, attributes: ['codigo', 'observacao']}).then(projetor => {
        return res.send(projetor)
-   }).catch(()=>{return res.send(null)})
+   }).catch(()=>{return res.send(false)})
 })
 
 router.post('/delete', async (req,res)=>{

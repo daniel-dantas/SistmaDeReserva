@@ -13,15 +13,15 @@
             </div>
             <div class="coluna-2">
                 <h2 class="title">Crie sua Conta</h2>
-                <form class="form">
-                    <input type="text" placeholder=" Nome">
-                    <input type="text" placeholder=" Matrícula">
-                    <input type="text" placeholder=" Disciplina">
-                    <input type="email" placeholder=" Email">
-                    <input type="password" placeholder=" Senha">
-                    <button class="btn">Cadastrar</button>
+                <div class="form">
+                    <input type="text" id="nome" placeholder=" Nome">
+                    <input type="text" id="matricula" placeholder=" Matrícula">
+                    <input type="text" id="curso" placeholder=" Disciplina">
+                    <input type="email" id="email" placeholder=" Email">
+                    <input type="password" id="senha" placeholder=" Senha">
+                    <button class="btn" onclick="reqCadastrar()">Cadastrar</button>
                    
-                </form>
+                </div>
                     <button id="entrar" class="btn">Login</button>
             </div>
         </div>
@@ -31,17 +31,23 @@
             </div>
             <div class="coluna-2">
                 <h2 class="title">Entrar</h2>
-                <form class="form">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Senha">
+                <div class="form">
+                    <input type="text" id="matriculaLogin" placeholder="Matrícula" maxlength="12">
+                    <input type="password" id="senhaLogin" placeholder="Senha">
                     <a class="senha" href="http://">Esqueceu sua senha?</a>
-                    <button class="btn">Login</button>
+                    <button onclick="reqAuth()" class="btn">Login</button>
                     
-                </form>
+                </div>
                     <button id="cadastrar" class="btn">Cadastrar</button>
             </div>
         </div>
     </div>
     <script src="app.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    
 </body>
 </html>

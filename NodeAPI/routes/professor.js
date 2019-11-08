@@ -8,8 +8,8 @@ router.post('/search',async (req,res)=>{
      await Professor.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','disciplinas']}).then(prof => {
         Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['nome', 'email']}).then(user => {
             return res.send({user: user, disciplinas: prof.disciplinas})
-        }).catch(()=>{return res.send(null)})
-    }).catch(()=>{return res.send(null)})
+        }).catch(()=>{return res.send(false)})
+    }).catch(()=>{return res.send(false)})
 })
 
 router.post('/create', async (req,res)=>{
@@ -26,7 +26,7 @@ router.post('/create', async (req,res)=>{
                 return res.send({user: user, disciplinas: prof.disciplinas})
             })
         }).catch((error)=>{
-            return res.send(null)
+            return res.send(false)
         })
     
     
@@ -52,8 +52,8 @@ router.post('/update', (req,res)=>{
     Usuario.update({nome: req.body.nome, senha: req.body.senha, email: req.body.email}, {where: {matricula: req.body.matricula}}).then((user)=>{
         Professor.update({disciplinas: req.body.disciplinas}, {where: {matricula: req.body.matricula}}).then((prof)=>{
             return res.send(user)
-        }).catch(()=>{return res.send(null)})
-    }).catch(()=>{return res.send(null)})
+        }).catch(()=>{return res.send(false)})
+    }).catch(()=>{return res.send(false)})
 })
 
 router.post('/auth', (req,res)=>{
@@ -63,10 +63,10 @@ router.post('/auth', (req,res)=>{
                 user.senha = ""
                 return res.send({user: user, disciplinas: professor.disciplinas})
             }else{
-                return res.send(null)
+                return res.send(false)
             }
-        }).catch(()=>{res.send(null)})
-    }).catch(()=>{res.send(null)})
+        }).catch(()=>{res.send(false)})
+    }).catch(()=>{res.send(false)})
 })
 
 module.exports = router

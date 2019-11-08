@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.post('/create', async (req,res)=>{
-
+    
     var matricula = req.body.matricula
     await Usuario.create({
         matricula: matricula,
@@ -16,19 +16,19 @@ router.post('/create', async (req,res)=>{
         Aluno.create({matricula: matricula,curso: req.body.curso}).then((aluno)=>{
             user.senha = ""
             return res.send({user: user, curso: aluno.curso})
-        }).catch(()=>{return res.send(null)})
+        }).catch(()=>{return res.send(false)})
     }).catch(()=>{
-        return res.send(null)
+        return res.send(false)
     })
 
 })
 
-router.post('/search',async (req,res)=>{
-    await Aluno.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','curso']}).then(aluno => {
-       Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['nome', 'email']}).then(user => {
-           return res.send({user: user, curso: aluno.curso})
-       }).catch(()=>{return res.send(null)})
-   }).catch(()=>{return res.send(null)})
+router.post('/search',(req,res)=>{
+    Aluno.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','curso']}).then(aluno => {
+        Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['nome', 'email']}).then(user => {
+            return res.send({user: user, curso: aluno.curso})
+       }).catch(()=>{return res.send(false)})
+   }).catch(()=>{return res.send(false)})
 })
 
 router.post('/delete', async (req,res)=>{
@@ -55,16 +55,22 @@ router.post('/update', (req,res)=>{
 
 
 router.post('/auth', (req,res)=>{
-    Aluno.findOne({where: {matricula: req.body.matricula}}).then(aluno => {
-        Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula', 'senha', 'nome', 'email']}).then(user=>{
-            if(user.senha == req.body.senha){
-                user.senha = ""
-                return res.send({user: user, curso: req.body.curso})
-            }else{
-                return res.send(null)
-            }
-        }).catch(()=>{res.send(null)})
-    }).catch(()=>{res.send(null)})
+
+    if(req.body.matricula == "" && req.body.senha == ""){
+        return res.send(false)
+    }else{
+        Aluno.findOne({where: {matricula: req.body.matricula}}).then(aluno => {
+            Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula', 'senha', 'nome', 'email']}).then(user=>{
+                if(user.senha == req.body.senha){
+                    user.senha = ""
+                    return res.send({user: user, curso: req.body.curso})
+                }else{
+                    return res.send(false)
+                }
+            }).catch(()=>{res.send(false)})
+        }).catch(()=>{res.send(false)})
+    }
+    
 })
 
 module.exports = router

@@ -27,12 +27,11 @@ router.post('/create', (req,res) => {
     let codigoDoAmbiente
     let codigoDoProjetor
 
-
     try{
         horarioInicio = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicio+":00.391")
         horarioFim = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioFim+":00.391")
     }catch(erro){
-        return res.send(null)
+        return res.send(false)
     }
 
     codigoDoAmbiente = req.body.codigoDoAmbiente
@@ -47,24 +46,33 @@ router.post('/create', (req,res) => {
     
             return res.send(novaReserva)
         }).catch(erro => {
-            return res.send(null)
+            return res.send(false)
         })
     }
 
-
     Reserva.findAll().then(reservas => {
         
+        let status = true
+
         reservas.map(reserva => {
             if((horarioInicio >= reserva.horarioInicio && horarioInicio <= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                return res.send(null)
+                status = false
+                return res.send(false) 
             }else if((horarioFim >= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                return res.send(null)
+                status = false
+                return res.send(false)
             }else{
+                status = false
                 create()
             }
         })
 
-        create()
+        if (status){
+            create()
+        }else{
+            return res.send(false)
+        }
+        
         
     })
 
@@ -94,7 +102,7 @@ router.post('/search', (req,res) => {
         return res.send({horarioInicio: horarioInicio, horarioFim: horarioFim,codigoDoAmbiente: reserva.codigoDoAmbiente, matriculaDoUsuario: reserva.matriculaDoUsuario})
 
     }).catch(erro => {
-        return res.send(null)
+        return res.send(false)
     })
     
 
@@ -114,19 +122,49 @@ router.post('/update', (req,res) => {
         horarioInicio = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicio+":00.391")
         horarioFim = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicioAntigo+":00.391")
     }catch(erro){
-        return res.send(null)
+        return res.send(false)
     }
+
 
     codigoDoAmbiente = req.body.codigoDoAmbiente
     codigoDoProjetor = req.body.codigoDoProjetor
-    
 
+    const update = ()=>{
+        Reserva.update({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor}, {where: {id: req.body.id}}).then(reserva => {
+            return res.send(true)
+        }).catch(erro => {
+            return res.send(false)
+        })
+    }
 
-    Reserva.update({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor}, {where: {id: req.body.id}}).then(reserva => {
-        return res.send(true)
-    }).catch(erro => {
-        return res.send(false)
+    Reserva.findAll().then(reservas => {
+        
+        let status = true
+
+        reservas.map(reserva => {
+            if((horarioInicio >= reserva.horarioInicio && horarioInicio <= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
+                status = false
+                return res.send(false) 
+            }else if((horarioFim >= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
+                status = false
+                return res.send(false)
+            }else{
+                status = false
+                update()
+            }
+        })
+
+        if (status){
+            update()
+        }else{
+            return res.send(false)
+        }
+        
+        
     })
+
+
+    
 })
 
 

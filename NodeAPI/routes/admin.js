@@ -13,7 +13,7 @@ router.post('/create', async (req,res)=>{
         user.senha = ""
         return res.send(user)
     }).catch((erro)=>{
-        return res.send(null)
+        return res.send(false)
     })
 
 })
@@ -21,7 +21,7 @@ router.post('/create', async (req,res)=>{
 router.post('/search',async (req,res)=>{
     await Admin.findOne({where: {userName: req.body.userName}, attributes: ['userName']}).then(user => {
        return res.send(user)
-   }).catch(()=>{return res.send(null)})
+   }).catch(()=>{return res.send(false)})
 })
 
 router.post('/delete', async (req,res)=>{
@@ -45,7 +45,7 @@ router.post('/auth', (req,res)=>{
     Admin.findOne({where: {userName: req.body.userName}}).then(user => {
         user.senha = ""
         return res.send(user)
-    }).catch(()=>{return res.send(null)})
+    }).catch(()=>{return res.send(false)})
 })
 
 module.exports = router
