@@ -82,7 +82,19 @@
     width: 55%;
     text-align: center;
 }
+.formcadastro{
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    text-align: center;
+}
 .form input{
+    height: 45px;
+    border: none;
+    background-color: honeydew;
+    margin: 8px;
+}
+.formcadastro input{
     height: 45px;
     border: none;
     background-color: honeydew;
