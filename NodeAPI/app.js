@@ -18,7 +18,7 @@ const rotaAdmin = require('./routes/admin')
 
 // Rotas
 app.get('/', function (req, res) {
-    res.send('Api REST')
+    res.send('API REST')
 })
 
 app.use('/professores', rotaProfessor)

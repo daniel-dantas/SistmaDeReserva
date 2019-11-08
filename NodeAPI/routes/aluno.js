@@ -2,7 +2,7 @@ const express = require('express')
 const Aluno = require('../models/Aluno')
 const Usuario = require('../models/Usuario')
 const router = express.Router()
-
+const webtoken = require('jsonwebtoken')
 
 router.post('/create', async (req,res)=>{
     

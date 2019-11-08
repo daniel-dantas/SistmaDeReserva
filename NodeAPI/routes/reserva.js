@@ -3,7 +3,7 @@ const Reserva = require('../models/Reserva')
 const dateFormat = require('date-format')
 const formatDate = require('format-date')
 const router = express.Router()
-
+const jwt = require('jsonwebtoken')
 
 router.get('/read', (req,res)=>{
     Reserva.findAll().then((reservas)=>{
@@ -16,6 +16,7 @@ router.get('/read', (req,res)=>{
 
 router.post('/create', (req,res) => {
     
+
     // Formato em que a data precisa está dd/MM/yyyy hh:mm:ss
     let horarioInicio
     let horarioFim
@@ -32,6 +33,7 @@ router.post('/create', (req,res) => {
     codigoDoAmbiente = req.body.codigoDoAmbiente
     codigoDoProjetor = req.body.codigoDoProjetor
     
+    var user = jwt.verify(req.body.token, 'sisres');
     const create = () =>{
         Reserva.create({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor, matriculaDoUsuario: req.body.matriculaDoUsuario}).then(reserva => {
             horarioInicio = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioInicio)
