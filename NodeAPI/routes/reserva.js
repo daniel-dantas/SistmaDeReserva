@@ -7,12 +7,7 @@ const router = express.Router()
 
 router.get('/read', (req,res)=>{
     Reserva.findAll().then((reservas)=>{
-        reservas.map(reserva => {
-            reserva.horarioInicio = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioInicio)
-            reserva.horarioFim = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioFim)
-            
-        })
-
+        
         return res.send(reservas)
     }).catch(erro =>{
         return res.send(null)

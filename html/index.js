@@ -1,28 +1,51 @@
 
+
+
+var settings = {
+  "async": true,
+  "crossDomain": false,
+  "url": "",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "processData": true,
+  "data": ""
+}
+
 const reqAuth = () => {
+
 
     let matriculaLogin = document.getElementById('matriculaLogin').value
     let senhaLogin = document.getElementById('senhaLogin').value
 
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://localhost:8000/alunos/auth",
-        "method": "POST",
-        "headers": {
-          "content-type": "application/json"
-        },
-        "processData": false,
-        "data": "{\n\t\"matricula\": \""+matriculaLogin+"\",\n\t\"senha\": \""+senhaLogin+"\"\n}"
-      }
-      
-      $.ajax(settings).done(function (response) {
+    settings.url = 'http://localhost:8000/alunos/auth'
+    settings.data = "{\n\t\"matricula\": \""+matriculaLogin+"\",\n\t\"senha\": \""+senhaLogin+"\"\n}"
+    
+    $.ajax(settings).done(function (response) {
         
-        if(response != false){
-          console.log(response) 
-          // document.location.href = 'TelaPrincipal.html'
+
+
+        if(response){
+          window.localStorage.setItem('user', {nome: response.user.nome, matricula: response.user.matricula})
+          document.location.href = 'TelaPrincipal.html'
         }else{
-            alert('Usuario ou senha incorreto')
+
+            settings.url = 'http://localhost:8000/professores/auth'
+
+            $.ajax(settings).done(function (response) {
+
+              if(response){
+                // window.localStorage.setItem('matricula', response.user.matricula)
+                // console.log(response.user.matricula)
+                document.location.href = 'TelaPrincipal.html'
+
+              }else{
+                alert('Usuario ou senha incorretos!')
+              }
+
+
+            })
         }
       });
 }
