@@ -105,6 +105,10 @@ h2{
     font-size: 21px;
  }
 
+ #reservados{
+    cursor: pointer;
+ }
+
 .TOP{
     width: 60%; 
     height: 9.9%;
@@ -119,6 +123,7 @@ h2{
 }
 
 .CENTER_DIV{
+    color: white;
     width: 60%;
     height: 90%;
     left: 31%;

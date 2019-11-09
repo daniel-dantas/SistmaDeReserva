@@ -8,7 +8,7 @@
     <script type="text/javascript" src="homepagejs.js"></script>
     <title>HomePage</title>
 </head>
-<body>
+<body  onload="inicio()">
     
     <!-- Menu Lateral -->
     <div class="MAINDIV"> 
@@ -16,7 +16,7 @@
         <!-- Div onde o Nome/Matricula do Usuario deverá ser mostrada -->
         <div class="LEFT_DIVS DIVS_1"> 
 
-                <h2 id="NomeUsuario">  </h2>
+                <h2 id="NomeUsuario"> </h2>
                 <h2>  </h2>
 
         </div>
@@ -24,7 +24,7 @@
         <!-- Div com os Botões pra reserva de locais ou materiais -->
         <div class="LEFT_DIVS DIVS_2"> 
 
-                <h2>Reservar</h2>
+                <h2 id="reservados" onclick="inicio()">Reservados</h2>
                 <div class="BtnList">
                     <button class="Button" onclick="reservaSala()">Salas</button>
                     <button class="Button" onclick="reservaLaboratorio()">Laboratorios</button>
@@ -39,7 +39,7 @@
 
             <div class="BtnList">
             
-                <button class="Sair"> Sair </button>
+                <a href="index.html"><button class="Sair"> Sair </button></a>
 
             </div>
 
@@ -69,11 +69,6 @@
         </div>
 
     </div>
-
-    <!--<input type="data" name="Data inicial">
-    <input type="time" name="Hora">
-    <input type="time" name="Hora Final">
-    <input type="submit" value="Reservar">-->
 
 </body>
 </html>
