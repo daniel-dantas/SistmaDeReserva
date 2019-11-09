@@ -3,6 +3,12 @@ const Reserva = require('../models/Reserva')
 const dateFormat = require('date-format')
 const formatDate = require('format-date')
 const router = express.Router()
+
+const Moment = require('moment')
+const momentRange = require('moment-range')
+const moment = momentRange.extendMoment(Moment)
+
+
 const jwt = require('jsonwebtoken')
 
 router.get('/read', (req,res)=>{
@@ -14,7 +20,7 @@ router.get('/read', (req,res)=>{
     })
 })
 
-router.post('/create', (req,res) => {
+router.post('/create', async (req,res) => {
     
 
     // Formato em que a data precisa está dd/MM/yyyy hh:mm:ss
@@ -33,54 +39,56 @@ router.post('/create', (req,res) => {
     codigoDoAmbiente = req.body.codigoDoAmbiente
     codigoDoProjetor = req.body.codigoDoProjetor
     
-    var user = jwt.verify(req.body.token, 'sisres');
-    const create = () =>{
-        Reserva.create({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor, matriculaDoUsuario: req.body.matriculaDoUsuario}).then(reserva => {
-            horarioInicio = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioInicio)
-            horarioFim = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioFim)
-            
-            let novaReserva = {horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: req.body.codigoDoAmbiente, matriculaDoUsuario: req.body.matriculaDoUsuario}
-    
-            return res.send(novaReserva)
-        }).catch(erro => {
-            return res.send(false)
-        })
-    }
-
-    Reserva.findAll().then(reservas => {
         
-        let status = true
+        let token
 
-        reservas.map(reserva => {
-            if((horarioInicio >= reserva.horarioInicio && horarioInicio <= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                status = false
-                return res.send(false) 
-            }else if((horarioFim >= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                status = false
-                return res.send(false)
-            }else{
-                status = false
-                create()
-            }
-        })
-
-        if (status){
-            create()
-        }else{
+        try{
+            token = jwt.verify(req.body.token, 'sisresapi');
+            
+        }catch(erro ){
             return res.send(false)
         }
-        
-        
-    })
 
+        
+        
+        Reserva.findAll().then(reservas => {
+
+            let status = true
+
+            reservas.map(reser => {
+
+                let range = moment.range(reser.horarioInicio, reser.horarioFim)
+
+                status = !((range.contains(horarioInicio) || range.contains(horarioFim)) && (reser.codigoDoAmbiente === req.body.codigoDoAmbiente))
+
+            })
+
+
+            if(status){
+                Reserva.create({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor, matriculaDoUsuario: token.user.matricula}).then(reserva => {
+                    horarioInicio = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioInicio)
+                    horarioFim = formatDate('{day}/{month}/{year} {hours}:{minutes}', reserva.horarioFim)
+                    
+                    let novaReserva = {horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: req.body.codigoDoAmbiente, matriculaDoUsuario: reserva.matriculaDoUsuario}
+                    
+                    return res.send(novaReserva)
+                    
+        
+                }).catch(erro => {
+                    return res.send(false)
+                })
+            }else{
+                return res.send(false)
+            }
+
+            
+        })
     
 })
 
 router.post('/delete', (req,res) => {
 
-    horarioInicio = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicio+":00.391")
-
-    Reserva.destroy({where: {horarioInicio: horarioInicio, codigoDoAmbiente: req.body.codigoDoAmbiente}}).then(()=>{
+    Reserva.destroy({where: {id: req.body.id}}).then(()=>{
         return res.send(true)
     }).catch(erro => {
         return res.send(false)
@@ -111,48 +119,50 @@ router.post('/update', (req,res) => {
 
     let horarioInicio
     let horarioFim
-    let horarioInicioAntigo
     let codigoDoAmbiente
     let codigoDoProjetor
 
     try{
         horarioInicio = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicio+":00.391")
-        horarioFim = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicioAntigo+":00.391")
+        horarioFim = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioFim+":00.391")
     }catch(erro){
         return res.send(false)
     }
 
 
+
+    try{
+        jwt.verify(req.body.token, 'sisresapi')
+    }catch(err){
+        return res.send(false)
+    }
+
     codigoDoAmbiente = req.body.codigoDoAmbiente
     codigoDoProjetor = req.body.codigoDoProjetor
 
-    const update = ()=>{
-        Reserva.update({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor}, {where: {id: req.body.id}}).then(reserva => {
-            return res.send(true)
-        }).catch(erro => {
-            return res.send(false)
-        })
-    }
+    
+
 
     Reserva.findAll().then(reservas => {
         
         let status = true
 
-        reservas.map(reserva => {
-            if((horarioInicio >= reserva.horarioInicio && horarioInicio <= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                status = false
-                return res.send(false) 
-            }else if((horarioFim >= reserva.horarioFim) && req.body.codigoDoAmbiente == reserva.codigoDoAmbiente){
-                status = false
-                return res.send(false)
-            }else{
-                status = false
-                update()
-            }
+        reservas.map(reser => {
+
+            let range = moment.range(reser.horarioInicio, reser.horarioFim)
+
+            status = !((range.contains(horarioInicio) || range.contains(horarioFim)) && (reser.codigoDoAmbiente === req.body.codigoDoAmbiente))
+
         })
 
+
+
         if (status){
-            update()
+            Reserva.update({horarioInicio: horarioInicio, horarioFim: horarioFim, codigoDoAmbiente: codigoDoAmbiente, codigoDoProjetor: codigoDoProjetor}, {where: {id: req.body.id}}).then(reserva => {
+                return res.send(true)
+            }).catch(erro => {
+                return res.send(false)
+            })        
         }else{
             return res.send(false)
         }

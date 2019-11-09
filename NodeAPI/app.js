@@ -48,6 +48,8 @@ app.post('/user/recoveryPass', (req,res) => {
         }).catch(err => {
             return res.send(false)
         })
+    }).catch(erro => {
+        return res.send(false)
     })
 
     
