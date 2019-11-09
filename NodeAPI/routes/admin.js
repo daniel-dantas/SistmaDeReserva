@@ -1,6 +1,6 @@
 const express = require('express')
 const Admin = require('../models/Admin')
-
+const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 router.post('/create', async (req,res)=>{
@@ -10,8 +10,8 @@ router.post('/create', async (req,res)=>{
         userName: req.body.userName,
         senha: req.body.senha
     }).then((user)=>{
-        user.senha = ""
-        return res.send(user)
+        let token = jwt.sign({user: user},'sisresapi')
+        return res.send({token: token})
     }).catch((erro)=>{
         return res.send(false)
     })
@@ -43,8 +43,15 @@ router.post('/update', (req,res)=>{
 
 router.post('/auth', (req,res)=>{
     Admin.findOne({where: {userName: req.body.userName}}).then(user => {
-        user.senha = ""
-        return res.send(user)
+        
+        if(user.senha == req.body.senha){
+            let token = jwt.sign({user: user}, 'sisresapi')
+            return res.send({token: token})
+        }else{
+            return res.send(false)
+        }
+
+        
     }).catch(()=>{return res.send(false)})
 })
 

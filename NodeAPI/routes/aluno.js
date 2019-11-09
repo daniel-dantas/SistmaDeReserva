@@ -2,7 +2,8 @@ const express = require('express')
 const Aluno = require('../models/Aluno')
 const Usuario = require('../models/Usuario')
 const router = express.Router()
-const webtoken = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
+
 
 router.post('/create', async (req,res)=>{
     
@@ -14,8 +15,8 @@ router.post('/create', async (req,res)=>{
         email: req.body.email
     }).then((user)=>{
         Aluno.create({matricula: matricula,curso: req.body.curso}).then((aluno)=>{
-            user.senha = ""
-            return res.send({user: user, curso: aluno.curso})
+            var token = jwt.sign({user: user, curso: aluno.curso}, 'sisresapi');
+            return res.send({token: token})
         }).catch(()=>{return res.send(false)})
     }).catch(()=>{
         return res.send(false)
@@ -54,6 +55,8 @@ router.post('/update', (req,res)=>{
 })
 
 
+
+
 router.post('/auth', (req,res)=>{
 
     if(req.body.matricula == "" && req.body.senha == ""){
@@ -62,8 +65,8 @@ router.post('/auth', (req,res)=>{
         Aluno.findOne({where: {matricula: req.body.matricula}}).then(aluno => {
             Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula', 'senha', 'nome', 'email']}).then(user=>{
                 if(user.senha == req.body.senha){
-                    user.senha = ""
-                    return res.send({user: user, curso: req.body.curso})
+                    var token = jwt.sign({user: user, curso: req.body.curso}, 'sisresapi');
+                    return res.send({token: token})
                 }else{
                     return res.send(false)
                 }

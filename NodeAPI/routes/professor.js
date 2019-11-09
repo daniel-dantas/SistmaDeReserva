@@ -2,7 +2,7 @@ const express = require('express')
 const Professor = require('../models/Professor')
 const Usuario = require('../models/Usuario')
 const router = express.Router()
-
+const jwt = require('jsonwebtoken')
 
 router.post('/search',async (req,res)=>{
      await Professor.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','disciplinas']}).then(prof => {
@@ -22,8 +22,8 @@ router.post('/create', async (req,res)=>{
             email: req.body.email
         }).then((user)=>{
             Professor.create({matricula: matricula, disciplinas: req.body.disciplinas}).then((prof)=>{
-                user.senha = ""
-                return res.send({user: user, disciplinas: prof.disciplinas})
+                let token = jwt.sign({user: user, disciplinas: prof.disciplinas}, 'sisresapi')
+                return res.send({token: token})
             })
         }).catch((error)=>{
             return res.send(false)
@@ -60,8 +60,8 @@ router.post('/auth', (req,res)=>{
     Professor.findOne({where: {matricula: req.body.matricula}}).then(professor => {
         Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula', 'senha', 'nome', 'email']}).then(user=>{
             if(user.senha == req.body.senha){
-                user.senha = ""
-                return res.send({user: user, disciplinas: professor.disciplinas})
+                let token = jwt.sign({user: user, disciplinas: professor.disciplinas}, 'sisresapi')
+                return res.send({token: token})
             }else{
                 return res.send(false)
             }
