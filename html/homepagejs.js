@@ -62,7 +62,7 @@ function reservaLaboratorio(){
 function Lab(){
     document.getElementById("p4").style.display="block";
 
-    document.getElementById("ph2").innerHTML = "Reserva de Sala";
+    document.getElementById("ph2").innerHTML = "Reserva de Laboratorio";
 
     document.getElementById("cardData1").style.display="none";
     document.getElementById("cardData2").style.display="none";
@@ -101,16 +101,16 @@ function reservaDS(){
  function DS(){
     document.getElementById("p4").style.display="block";
 
-    document.getElementById("ph2").innerHTML = "Reserva de Sala";
+    document.getElementById("ph2").innerHTML = "Reserva de DataShow";
 
     document.getElementById("cardData1").style.display="none";
     document.getElementById("cardData2").style.display="none";
     document.getElementById("cardData3").style.display="none";
+    document.getElementById("p3").style.display="none";
     document.getElementById("btn1").style.display="none";
     document.getElementById("btn2").style.display="none";
-    document.getElementById("p1").innerHTML = "Laboratorio";
-    document.getElementById("p2").innerHTML = "Bloco";
-    document.getElementById("p3").innerHTML = "Capacidade";
+    document.getElementById("p1").innerHTML = "DataShow";
+    document.getElementById("p2").innerHTML = "Descrição";
     document.getElementById("p4").innerHTML = "<input type='submit' value='Reservar'>"
  }
 
@@ -147,8 +147,8 @@ function reservaDS(){
     document.getElementById("cardData3").style.display="none";
     document.getElementById("btn1").style.display="none";
     document.getElementById("btn2").style.display="none";
-    document.getElementById("p1").innerHTML = "Laboratorio";
-    document.getElementById("p2").innerHTML = "Bloco";
+    document.getElementById("p1").innerHTML = "Ambiente";
+    document.getElementById("p2").innerHTML = "Descrição";
     document.getElementById("p3").innerHTML = "Capacidade";
     document.getElementById("p4").innerHTML = "<input type='submit' value='Reservar'>"
  }
