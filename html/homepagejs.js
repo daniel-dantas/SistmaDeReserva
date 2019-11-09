@@ -1,8 +1,8 @@
 function inicio(){
-    document.getElementById("p1").style.display="block";
-    document.getElementById("p2").style.display="block";
-    document.getElementById("p3").style.display="block";
-    document.getElementById("p4").style.display="block";
+    document.getElementById("p1").style.display="none";
+    document.getElementById("p2").style.display="none";
+    document.getElementById("p3").style.display="none";
+    document.getElementById("p4").style.display="none";
     document.getElementById("cardData1").style.display="none";
     document.getElementById("cardData2").style.display="none";
     document.getElementById("cardData3").style.display="none";
@@ -10,15 +10,17 @@ function inicio(){
     document.getElementById("btn2").style.display="none";
     document.getElementById("ph2").innerHTML = "Historico";
 
-    document.getElementById("p1").innerHTML = "Espaço";
-    document.getElementById("p2").innerHTML = "Bloco";
-    document.getElementById("p3").innerHTML = "Responsavel";
-    document.getElementById("p4").innerHTML = "Status";
-
+   document.getElementById("table1").style.display="block";
 }
 
 
 function reservaSala(){
+   document.getElementById("table1").style.display="none";
+
+   document.getElementById("p1").style.display="block";
+    document.getElementById("p2").style.display="block";
+    document.getElementById("p3").style.display="block";
+    document.getElementById("p4").style.display="block";
     document.getElementById("cardData1").style.display="block";
     document.getElementById("cardData2").style.display="block";
     document.getElementById("cardData3").style.display="block";
@@ -41,6 +43,10 @@ function reservaSala(){
  }
 
  function Sala(){
+   document.getElementById("p1").style.display="block";
+   document.getElementById("p2").style.display="block";
+   document.getElementById("p3").style.display="block";
+   document.getElementById("p4").style.display="block";
     document.getElementById("p4").style.display="block";
 
     document.getElementById("ph2").innerHTML = "Reserva de Sala";
@@ -57,6 +63,12 @@ function reservaSala(){
  }
 
 function reservaLaboratorio(){
+   document.getElementById("table1").style.display="none";
+   document.getElementById("p1").style.display="block";
+   document.getElementById("p2").style.display="block";
+   document.getElementById("p3").style.display="block";
+   document.getElementById("p4").style.display="block";
+
     document.getElementById("cardData1").style.display="block";
     document.getElementById("cardData2").style.display="block";
     document.getElementById("cardData3").style.display="block";
@@ -96,6 +108,12 @@ function Lab(){
  }
 
 function reservaDS(){
+   document.getElementById("table1").style.display="none"
+   document.getElementById("p1").style.display="block";
+   document.getElementById("p2").style.display="block";
+   document.getElementById("p3").style.display="block";
+   document.getElementById("p4").style.display="block";  
+
     document.getElementById("cardData1").style.display="block";
     document.getElementById("cardData2").style.display="block";
     document.getElementById("cardData3").style.display="block";
@@ -135,6 +153,12 @@ function reservaDS(){
  }
 
  function reservaAmbiente(){
+   document.getElementById("table1").style.display="none";
+   document.getElementById("p1").style.display="block";
+   document.getElementById("p2").style.display="block";
+   document.getElementById("p3").style.display="block";
+   document.getElementById("p4").style.display="block";
+   
     document.getElementById("cardData1").style.display="block";
     document.getElementById("cardData2").style.display="block";
     document.getElementById("cardData3").style.display="block";

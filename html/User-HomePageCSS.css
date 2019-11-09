@@ -17,6 +17,10 @@ h2{
    line-height:100px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .MAINDIV{
     position: absolute;
     width: 20%;
@@ -58,6 +62,15 @@ h2{
     justify-content: center;
     left: 50%;
     transform: translateX(8%);
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
 }
 
 .BtnList .Button{

@@ -29,7 +29,7 @@
                     <button class="Button" onclick="reservaSala()">Salas</button>
                     <button class="Button" onclick="reservaLaboratorio()">Laboratorios</button>
                     <button class="Button" onclick="reservaAmbiente()">Ambientes</button>
-                    <button class="Button" onclick="reservaDS()">DataShow</button>        
+                    <button class="Button" onclick="reservaDS()">DataShow</button>
                 </div>
 
         </div>
@@ -39,7 +39,7 @@
 
             <div class="BtnList">
             
-                <button class="Sair"> Sair </button>
+                <a href="index.html"><button class="Sair"> Sair </button></a>
 
             </div>
 
@@ -57,6 +57,15 @@
 
         <!-- Bloco onde ficarão as "coisas" a serem reservadas -->
         <div class="CARD">
+                <table style="width:100%" id="table1">
+                    <tr>
+                        <th>Espaço</th>
+                        <th>Bloco</th>
+                        <th>Capacidades</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+
             <p id="p1"></p>
             <p id="cardData1"></p>
             <p id="p2"></p>
@@ -69,11 +78,6 @@
         </div>
 
     </div>
-
-    <!--<input type="data" name="Data inicial">
-    <input type="time" name="Hora">
-    <input type="time" name="Hora Final">
-    <input type="submit" value="Reservar">-->
 
 </body>
 </html>
