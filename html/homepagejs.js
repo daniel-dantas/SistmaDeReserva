@@ -172,3 +172,45 @@ function reservaDS(){
     document.getElementById("p3").innerHTML = "Capacidade";
     document.getElementById("p4").innerHTML = "<input type='submit' value='Reservar'>"
  }
+
+
+//  Reqs
+
+
+
+var settings = {
+   "async": true,
+   "crossDomain": false,
+   "url": "",
+   "method": "POST",
+   "headers": {
+     "content-type": "application/json"
+   },
+   "processData": true,
+   "data": ""
+}
+
+
+ const check = ()=>{
+
+   let token = window.localStorage.getItem('token')
+   settings.url = "http://localhost:8000/checkToken"
+   settings.data = "{\n\t\"token\": \""+token+"\"\n}"
+
+   $.ajax(settings).done(function (response) {
+      
+      if(!response){
+         window.localStorage.removeItem('token')
+         window.location.href = 'index.html'
+      }
+
+      console.log('deu certo!')
+    });
+ }
+
+ 
+
+
+
+
+
