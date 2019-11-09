@@ -27,7 +27,7 @@ const reqAuth = () => {
 
 
         if(response){
-          window.localStorage.setItem('user', {nome: response.user.nome, matricula: response.user.matricula})
+          window.localStorage.setItem('token', response.token)
           document.location.href = 'TelaPrincipal.html'
         }else{
 
@@ -36,7 +36,7 @@ const reqAuth = () => {
             $.ajax(settings).done(function (response) {
 
               if(response){
-                // window.localStorage.setItem('matricula', response.user.matricula)
+                window.localStorage.setItem('token', response.token)
                 // console.log(response.user.matricula)
                 document.location.href = 'TelaPrincipal.html'
 
