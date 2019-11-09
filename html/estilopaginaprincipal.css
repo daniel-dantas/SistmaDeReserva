@@ -19,7 +19,7 @@ a:hover{
     text-decoration: underline;
 }
 li{
-    margin-top: 20px;
+    margin-top: 5%;
     height: 25px;
 }
 .content{
@@ -34,42 +34,36 @@ li{
     flex-direction: column;
     align-items: center;
     background-color:white;
-    width: 250px;
-    height: 870px;
+    width: 100%;
+    height: 200%;
     border: 1px solid;
     border-color:grey;
 }
 .menudousuario{
     border-top-right-radius: 15px;
-    width: 250px;
-    height: 170px;
+    width: 100%;
+    height: 25%;
     background-color:green;
     border: 1px solid;
     border-color:black;
 }
 .menuinicio{
-    width: 250px;
-    height: 150px;
+    width: 100%;
+    height: 25%;
     background-color:honeydew;
     border: 1px solid;
     border-color:grey;
 }
 .menureserva{
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 45%;
     background-color:honeydew;
     border: 1px solid;
     border-color:grey;
 }
-.menuadm{
-    width: 250px;
-    height: 250px;
-    background-color:honeydew;
-    border: 1px solid;
-    border-color:grey;
-}
+
 .title{
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .title-dados{
     color: white;
@@ -84,7 +78,6 @@ li{
     align-self: center;
     background-color: lightgrey;
     border: 1px solid white;
-
 
 }
 .btn:hover{
@@ -101,8 +94,8 @@ li{
     text-align: center;
     align-items: center;
     background-color:white;
-    width: 1050px;
-    height: 600px;
+    width: 2700%;
+    height: 189%;
     border: 1px solid;
     border-color:grey;
 }
