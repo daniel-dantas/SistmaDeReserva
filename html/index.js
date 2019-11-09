@@ -28,7 +28,7 @@ const reqAuth = () => {
 
         if(response){
           window.localStorage.setItem('token', response.token)
-          document.location.href = 'User-HomePage.html'
+          document.location.href = 'TelaPrincipal.html'
         }else{
 
             settings.url = 'http://localhost:8000/professores/auth'
@@ -38,7 +38,7 @@ const reqAuth = () => {
               if(response){
                 window.localStorage.setItem('token', response.token)
                 // console.log(response.user.matricula)
-                document.location.href = 'User-HomePage.html'
+                document.location.href = 'TelaPrincipal.html'
 
               }else{
                 alert('Usuario ou senha incorretos!')
