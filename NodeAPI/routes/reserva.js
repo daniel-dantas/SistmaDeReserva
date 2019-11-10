@@ -1,5 +1,6 @@
 const express = require('express')
 const Reserva = require('../models/Reserva')
+const Ambiente  = require('../models/Ambiente')
 const dateFormat = require('date-format')
 const formatDate = require('format-date')
 const router = express.Router()
@@ -148,8 +149,8 @@ router.post('/update', (req,res) => {
         let status = true
 
         reservas.map(reser => {
-
             let range = moment.range(reser.horarioInicio, reser.horarioFim)
+
 
             status = !((range.contains(horarioInicio) || range.contains(horarioFim)) && (reser.codigoDoAmbiente === req.body.codigoDoAmbiente))
 

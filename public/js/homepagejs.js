@@ -30,13 +30,13 @@ function reservaSala(){
    document.getElementById("ph2").innerHTML = "Reserva de Sala";
 
    document.getElementById("p1").innerHTML = "Data";
-   document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("cardData1").innerHTML = "<input type='data' id='data' name='Data inicial'>";
 
    document.getElementById("p2").innerHTML = "Hora de Inicio";
-   document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("cardData2").innerHTML = "<input type='data' id='horaInicio' name='Data inicial'>";
 
    document.getElementById("p3").innerHTML = "Hora de Termino";
-   document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("cardData3").innerHTML = "<input type='data' id='horaFim' name='Data inicial'>";
 
    document.getElementById("btn1").innerHTML = "<input type='submit' value='Reservar' onclick='Sala()'>";
    document.getElementById("btn2").innerHTML = "<input type='submit' onclick='inicio()' value='Cancelar'>";
@@ -229,4 +229,31 @@ function Ambiente(){
    }
 
 
+  
+    
+
+   const reqReservaCreate = () => {
+
+      let data = document.getElementById('data').value
+      let horarioInicio = document.getElementById('horarioInicio').value
+      let horarioFim = document.getElementById('horarioFim').value
+      
+      let codigoDoAmbiente = ""
+
+      horarioInicio = data+" "+horarioInicio
+      horarioFim = data+" "+horarioFim
+
+      let token = window.localStorage.getItem('token')
+
+      settings.url = "localhost:8000/reservas/create"
+      settings.data = "{\n\t\"horarioInicio\": \""+horarioInicio+"\",\n\t\"horarioFim\": \""+horarioFim+"\",\n\t\"codigoDoAmbiente\": \""+codigoDoAmbiente+"\",\n\t\"token\":\""+token+"\"\n}"
+      $.ajax(settings).done((response)=>{
+         if(response){
+            alert('Reserva Feita com sucesso!')
+         }else{
+            alert('Já possui uma reserva para esse horario nesse mesmo ambiente')
+         }
+      })
+
+   }
    
