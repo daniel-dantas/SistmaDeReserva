@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: lightgray;
+    background-color: #24252a;
 }
 .content{
     background-color: white;
@@ -24,7 +24,7 @@
 .content::before{
     content: "" ;
     position: absolute;
-    background-color: green;
+    background-color: #2E8B57;
     width: 40%;
     height: 100%;
     border-top-left-radius: 15px;
