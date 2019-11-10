@@ -75,29 +75,37 @@ const reqCadastrar = () => {
   let email = document.getElementById('email').value
   let senha = document.getElementById('senha').value
   let curso = document.getElementById('curso').value
+  let disciplinas = document.getElementById('disciplinas').value
+  let tipoDeUsuario = document.getElementById('tipoDeUsuario').value
+  
 
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost:8000/alunos/create",
-    "method": "POST",
-    "headers": {
-      "content-type": "application/json"
-    },
-    "processData": false,
-    "data": "{\n\t\"matricula\": \""+matricula+"\",\n\t\"nome\": \""+nome+"\",\n\t\"senha\": \""+senha+"\",\n\t\"email\": \""+email+"\",\n\t\"curso\": \""+curso+"\"\n}"
+  if(tipoDeUsuario == 'Professor'){
+
+    settings.url = "http://localhost:8000/professores/create"
+    settings.data = "{\n\t\"matricula\": \""+matricula+"\",\n\t\"nome\": \""+nome+"\",\n\t\"senha\": \""+senha+"\",\n\t\"email\": \""+email+"\",\n\t\"disciplinas\": \""+disciplinas+"\"\n}"
+    $.ajax(settings).done(function (response) {
+      if(response){
+        window.localStorage.setItem('token', response.token)
+        document.location.href = './views/User-HomePage.html'
+      }else{
+        alert('Usuario já cadastrado, efetue apenas o login')
+      }
+    })
+
+  }else{
+    settings.url = "http://localhost:8000/alunos/create"
+    settings.data = "{\n\t\"matricula\": \""+matricula+"\",\n\t\"nome\": \""+nome+"\",\n\t\"senha\": \""+senha+"\",\n\t\"email\": \""+email+"\",\n\t\"curso\": \""+curso+"\"\n}"
+    $.ajax(settings).done(function (response) {
+      if(response){
+        window.localStorage.setItem('token', response.token)
+        document.location.href = './views/User-HomePage.html'
+      }else{
+        alert('Usuario já cadastrado, efetue apenas o login')
+      }
+    })
   }
   
-  $.ajax(settings).done(function (response) {
-    
-    
-    if(response){
-      console.log(response)
-      document.location.href = "TelaPrincipal.html"
-    }else{
-      alert('Usuario já cadastrado, efetue apenas o login')
-    }
-  });
+  
 }
 
 
