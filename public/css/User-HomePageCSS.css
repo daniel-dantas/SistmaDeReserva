@@ -65,8 +65,7 @@ a{
 }
 
 table, th, td {
-    background: black;
-    border: 0.5px solid black;
+    border: 0.5px solid gray;
     border-collapse: collapse;
     width: 300px;
     color:white;
@@ -148,7 +147,7 @@ th, td {
     transform: translateX(-50%, -50%);
 }
 
-.data, .horainicio, .horafim{
+.data, .horainicio, .horafim, .sigla, .bloco, .capacidade, .descricao, .numeracao{
     background: none;
     border:none;
     outline: none;

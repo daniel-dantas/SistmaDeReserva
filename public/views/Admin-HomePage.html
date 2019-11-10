@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/User-HomePageCSS.css">
+    <title>Sistema de Reserva</title>
+</head>
+<body  onload="inicio()">
+    
+    <!-- Menu Lateral -->
+    <div class="MAINDIV"> 
+
+        <!-- Div onde o Nome/Matricula do Usuario deverá ser mostrada -->
+        <div class="LEFT_DIVS DIVS_1"> 
+
+                <h2 id="NomeUsuario">  </h2>
+                <h2>  </h2>
+
+        </div>
+
+        <!-- Div com os Botões pra reserva de locais ou materiais -->
+        <div class="LEFT_DIVS DIVS_2"> 
+
+                <h2 id="reservados" onclick="inicio()">Inicio</h2>
+                <div class="BtnList">
+                    <button class="Button" onclick="reservaSala()">Salas</button>
+                    <button class="Button" onclick="reservaLaboratorio()">Laboratorios</button>
+                    <button class="Button" onclick="reservaAmbiente()">Ambientes</button>
+                    <button class="Button" onclick="reservaDS()">DataShow</button>
+                </div>
+
+        </div>
+
+        <!-- Div com o Botão sair -->
+        <div class="LEFT_DIVS DIVS_3">
+
+            <div class="BtnList">
+            
+                <a href="../index.html"><button class="Sair"> Sair </button></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Nome da parte superior -->
+    <div class="TOP">
+            <h2 id="ph2"></h2>
+    </div>
+
+    <!-- Div central, onde as salas serão mostradas -->
+    <div class="CENTER_DIV">
+
+        <!-- Bloco onde ficarão as "coisas" a serem reservadas -->
+        <div class="CARD">
+
+            <br><br><br>
+                <table style="width:100%" id="table1">
+                    <tr>
+                        <th>Espaço</th>
+                        <th>Bloco</th>
+                        <th>Capacidades</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            
+            <div class="container">
+                <div class="inner-width">    
+                    <p id="p1"></p>
+                    <br>
+                    <p id="cardData1"></p>
+                    <br>
+                    <p id="p2"></p>
+                    <br>
+                    <p id="cardData2"></p>
+                    <br>
+                    <p id="p3"></p>
+                    <br>
+                    <p id="cardData3"></p>
+                    <br>
+                    <p id="p4"></p>
+                    <br>
+                    <p id="btn1"></p>
+                    <p id="btn2"></p>
+                </div>
+        </div>
+        </div>
+
+    </div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/adminpagejs.js"></script>
+</body>
+</html>
