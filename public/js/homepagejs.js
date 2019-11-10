@@ -238,7 +238,7 @@ function Ambiente(){
       let horarioInicio = document.getElementById('horarioInicio').value
       let horarioFim = document.getElementById('horarioFim').value
       
-      let codigoDoAmbiente = ""
+      let codigoDoAmbiente = "LABinfo02"
 
       horarioInicio = data+" "+horarioInicio
       horarioFim = data+" "+horarioFim
