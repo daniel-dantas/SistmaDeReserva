@@ -65,8 +65,11 @@ a{
 }
 
 table, th, td {
-    border: 1px solid white;
+    background: black;
+    border: 0.5px solid black;
     border-collapse: collapse;
+    width: 300px;
+    color:white;
 }
 th, td {
     padding: 5px;
@@ -144,3 +147,77 @@ th, td {
     background-color: #24252a;
     transform: translateX(-50%, -50%);
 }
+
+.data, .horainicio, .horafim{
+    background: none;
+    border:none;
+    outline: none;
+    border-bottom: 1px solid;
+    color: #888;
+    padding: 10px 6px;
+    font-size: 14px;
+  }
+
+  .data{
+    float: center;
+    width: 200px;
+  }
+
+  .horainicio{
+      float: center;
+      width: 200px;
+  }
+
+  .horafim{
+      float: center;
+      width: 200px;
+  }
+
+  .container{
+    text-align: center;
+  }
+
+  .inner-width{
+    max-width: 600px;
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .Button{
+    background-color: #2E8B57;
+    border: 1px solid #3CB371;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 30%;
+    margin-bottom: ;
+    margin-top: 5px;
+}
+
+.Button:hover{
+    color: #2E8B57;
+    background-color: white;
+    font-size: 21px;
+}
+
+.Cancelar{
+    background-color: #d91e18;
+    border: 1px solid #96281b;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 30%;
+    transform: translate(0%,60% );
+}
+
+.Cancelar:hover{
+    color: #d91e18;
+    background-color: white;
+    font-size: 21px;
+ }

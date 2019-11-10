@@ -30,16 +30,17 @@ function reservaSala(){
    document.getElementById("ph2").innerHTML = "Reserva de Sala";
 
    document.getElementById("p1").innerHTML = "Data";
-   document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p1").innerHTML = "<input type='date' class='data' placeholder='Data'>"
 
    document.getElementById("p2").innerHTML = "Hora de Inicio";
-   document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p2").innerHTML = "<input type='time' class='horainicio' placeholder='Hora inicial'>"
 
    document.getElementById("p3").innerHTML = "Hora de Termino";
-   document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p3").innerHTML = "<input type='time' class='horafim' placeholder='Data'>"
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' value='Reservar' onclick='Sala()'>";
-   document.getElementById("btn2").innerHTML = "<input type='submit' onclick='inicio()' value='Cancelar'>";
+   document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
+
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick='Sala()'>";
 }
 
 function Sala(){
@@ -79,16 +80,20 @@ function reservaLaboratorio(){
    document.getElementById("ph2").innerHTML = "Reserva de Laboratorio";
 
    document.getElementById("p1").innerHTML = "Data";
-   document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p1").innerHTML = "<input type='date' class='data' placeholder='Data'>"
+   //document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p2").innerHTML = "Hora de Inicio";
-   document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p2").innerHTML = "<input type='time' class='horainicio' placeholder='data'>"
+   //document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p3").innerHTML = "Hora de Termino";
-   document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p3").innerHTML = "<input type='time' class='horafim' placeholder='data'>"
+   //document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' value='Reservar' onclick='Lab()'>";
-   document.getElementById("btn2").innerHTML = "<input type='submit' onclick='inicio()' value='Cancelar'>";
+   document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
+
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick='Lab()'>";
 }
 
 function Lab(){
@@ -124,16 +129,20 @@ function reservaDS(){
    document.getElementById("ph2").innerHTML = "Reserva de DataShow";
 
    document.getElementById("p1").innerHTML = "Data";
-   document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p1").innerHTML = "<input type='date' class='data' placeholder='Data'>"
+   //document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p2").innerHTML = "Hora de Inicio";
-   document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p2").innerHTML = "<input type='time' class='horainicio' placeholder='data'>"
+   //document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p3").innerHTML = "Hora de Termino";
-   document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p3").innerHTML = "<input type='time' class='horafim' placeholder='data'>"
+   //document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' value='Reservar' onclick='DS()'>";
-   document.getElementById("btn2").innerHTML = "<input type='submit' onclick='inicio()' value='Cancelar'>";
+   document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
+
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick='DS()'>";
 }
 
 function DS(){
@@ -169,16 +178,20 @@ function reservaAmbiente(){
    document.getElementById("ph2").innerHTML = "Reserva de Ambiente";
 
    document.getElementById("p1").innerHTML = "Data";
-   document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p1").innerHTML = "<input type='date' class='data' placeholder='Data'>"
+   //document.getElementById("cardData1").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p2").innerHTML = "Hora de Inicio";
-   document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p2").innerHTML = "<input type='time' class='horainicio' placeholder='data'>"
+   //document.getElementById("cardData2").innerHTML = "<input type='data' name='Data inicial'>";
 
    document.getElementById("p3").innerHTML = "Hora de Termino";
-   document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
+   document.getElementById("p3").innerHTML = "<input type='time' class='horafim' placeholder='data'>"
+   //document.getElementById("cardData3").innerHTML = "<input type='data' name='Data inicial'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' value='Reservar' onclick='Ambiente()'>";
-   document.getElementById("btn2").innerHTML = "<input type='submit' onclick='inicio()' value='Cancelar'>";
+   document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
+
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick='Ambiente()'>";
 }
 
 function Ambiente(){
@@ -209,6 +222,21 @@ function Ambiente(){
       "processData": false,
       "data": ""
    }
+
+
+   // Requisições para API Rest, o que for incerido de novo colocar a cima  
+
+   var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "",
+      "method": "POST",
+      "headers": {
+      "content-type": "application/json"
+      },
+      "processData": false,
+      "data": ""
+   }
    
    
 
@@ -224,6 +252,30 @@ function Ambiente(){
          if(!response){
             window.localStorage.removeItem('token')
             window.location.href = '../index.html'
+         }
+      })
+   }
+
+   const reqReservaCreate = () => {
+
+      let data = document.getElementById('data').value
+      let horarioInicio = document.getElementById('horarioinicio').value
+      let horarioFim = document.getElementById('horariofim').value
+      
+      let codigoDoAmbiente = "LABinfo02"
+
+      horarioInicio = data+" "+horarioInicio
+      horarioFim = data+" "+horarioFim
+
+      let token = window.localStorage.getItem('token')
+
+      settings.url = "localhost:8000/reservas/create"
+      settings.data = "{\n\t\"horarioInicio\": \""+horarioInicio+"\",\n\t\"horarioFim\": \""+horarioFim+"\",\n\t\"codigoDoAmbiente\": \""+codigoDoAmbiente+"\",\n\t\"token\":\""+token+"\"\n}"
+      $.ajax(settings).done((response)=>{
+         if(response){
+            alert('Reserva Feita com sucesso!')
+         }else{
+            alert('Já possui uma reserva para esse horario nesse mesmo ambiente')
          }
       })
    }

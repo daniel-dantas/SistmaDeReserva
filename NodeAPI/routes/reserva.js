@@ -1,5 +1,6 @@
 const express = require('express')
 const Reserva = require('../models/Reserva')
+const Ambiente  = require('../models/Ambiente')
 const dateFormat = require('date-format')
 const formatDate = require('format-date')
 const router = express.Router()
@@ -8,8 +9,36 @@ const Moment = require('moment')
 const momentRange = require('moment-range')
 const moment = momentRange.extendMoment(Moment)
 
-
 const jwt = require('jsonwebtoken')
+
+router.post('/searchAvailable', (req,res) => {
+    
+    let ambientesLivres = []
+    let horarioInicio = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioInicio+':00.391')
+    let horarioFim = dateFormat.parse("dd/MM/yyyy hh:mm:ss.SSS", req.body.horarioFim+':00.391')
+
+    Ambiente.findAll().then(ambientes => {
+
+
+        
+            Reserva.findAll().then(reservas => {
+                
+                reservas.map(reser => {
+                    let range = moment.range(reser.horarioInicio, reser.horarioFim)
+                    
+                    
+                    return res.send(ambientes.filter((amb) => {return !((range.contains(horarioInicio) || range.contains(horarioFim)) && (reser.codigoDoAmbiente === amb.codigo))}))
+                })
+
+                
+            })
+
+            return res.send(ambientes)
+        
+    })
+
+})
+
 
 router.get('/read', (req,res)=>{
     Reserva.findAll().then((reservas)=>{
@@ -148,8 +177,8 @@ router.post('/update', (req,res) => {
         let status = true
 
         reservas.map(reser => {
-
             let range = moment.range(reser.horarioInicio, reser.horarioFim)
+
 
             status = !((range.contains(horarioInicio) || range.contains(horarioFim)) && (reser.codigoDoAmbiente === req.body.codigoDoAmbiente))
 
