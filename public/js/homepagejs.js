@@ -219,19 +219,6 @@ function Ambiente(){
    document.getElementById("p3").innerHTML = "Capacidade";
    document.getElementById("p4").innerHTML = "<input type='submit' value='Reservar'>"
 }
-   // Requisições para API Rest, o que for incerido de novo colocar a cima  
-
-   var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "",
-      "method": "POST",
-      "headers": {
-      "content-type": "application/json"
-      },
-      "processData": false,
-      "data": ""
-   }
 
 
    // Requisições para API Rest, o que for incerido de novo colocar a cima  
@@ -292,30 +279,3 @@ function Ambiente(){
 
 
   
-    
-
-   const reqReservaCreate = () => {
-
-      let data = document.getElementById('data').value
-      let horarioInicio = document.getElementById('horarioInicio').value
-      let horarioFim = document.getElementById('horarioFim').value
-      
-      let codigoDoAmbiente = "LABinfo02"
-
-      horarioInicio = data+" "+horarioInicio
-      horarioFim = data+" "+horarioFim
-
-      let token = window.localStorage.getItem('token')
-
-      settings.url = "localhost:8000/reservas/create"
-      settings.data = "{\n\t\"horarioInicio\": \""+horarioInicio+"\",\n\t\"horarioFim\": \""+horarioFim+"\",\n\t\"codigoDoAmbiente\": \""+codigoDoAmbiente+"\",\n\t\"token\":\""+token+"\"\n}"
-      $.ajax(settings).done((response)=>{
-         if(response){
-            alert('Reserva Feita com sucesso!')
-         }else{
-            alert('Já possui uma reserva para esse horario nesse mesmo ambiente')
-         }
-      })
-
-   }
-   

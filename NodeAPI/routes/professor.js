@@ -22,7 +22,13 @@ router.post('/create', async (req,res)=>{
             email: req.body.email
         }).then((user)=>{
             Professor.create({matricula: matricula, disciplinas: req.body.disciplinas}).then((prof)=>{
+                let email = {
+                    titulo: "Seja Bem vindo! - Sistema de Reserva IFPB",
+                    texto: "",
+                    html: "<h1>Olá "+user.nome+"!</h1><br><p>Seja bem vindo ao sistema de Reservas do IFPB, nesse sistema você poderá realizar reservas de qualquer ambiente do IFPB sem precisar sair do conforto de onde você se encontra</p>"
+                }
                 let token = jwt.sign({user: user, disciplinas: prof.disciplinas}, 'sisresapi')
+                mail(user.email, email.texto, email.titulo, email.html)
                 return res.send({token: token})
             })
         }).catch((error)=>{

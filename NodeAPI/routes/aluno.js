@@ -2,6 +2,7 @@ const express = require('express')
 const Aluno = require('../models/Aluno')
 const Usuario = require('../models/Usuario')
 const router = express.Router()
+const mail = require('../utils/envioEmail')
 const jwt = require('jsonwebtoken')
 
 
@@ -14,8 +15,15 @@ router.post('/create', async (req,res)=>{
         senha: req.body.senha,
         email: req.body.email
     }).then((user)=>{
+        
         Aluno.create({matricula: matricula,curso: req.body.curso}).then((aluno)=>{
-            var token = jwt.sign({user: user, curso: aluno.curso}, 'sisresapi');
+            let email = {
+                titulo: "Seja Bem vindo! - Sistema de Reserva IFPB",
+                texto: "",
+                html: "<h1>Olá "+user.nome+"!</h1><br><p>Seja bem vindo ao sistema de Reservas do IFPB, nesse sistema você poderá realizar reservas de qualquer ambiente do IFPB sem precisar sair do conforto de onde você se encontra</p>"
+            }
+            var token = jwt.sign({user: user, curso: aluno.curso}, 'sisresapi')
+            mail(user.email, email.texto, email.titulo, email.html)
             return res.send({token: token})
         }).catch(()=>{return res.send(false)})
     }).catch(()=>{
