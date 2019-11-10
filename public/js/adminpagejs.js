@@ -42,7 +42,7 @@ function reservaSala(){
 
    document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick=''>";
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Cadastrar' onclick=''>";
 }
 
 
@@ -75,7 +75,7 @@ function reservaLaboratorio(){
 
    document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick=''>";
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Cadastrar' onclick=''>";
 }
 
 
@@ -102,7 +102,7 @@ function reservaDS(){
 
    document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick=''>";
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Cadastrar' onclick=''>";
 }
 
 function reservaAmbiente(){
@@ -134,7 +134,7 @@ function reservaAmbiente(){
 
    document.getElementById("btn2").innerHTML = "<input type='submit' class='Cancelar' onclick='inicio()' value='Cancelar'>";
 
-   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Reservar' onclick=''>";
+   document.getElementById("btn1").innerHTML = "<input type='submit' class='Button' value='Cadastrar' onclick=''>";
 }
 
 
