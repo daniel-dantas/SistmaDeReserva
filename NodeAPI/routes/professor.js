@@ -3,7 +3,7 @@ const Professor = require('../models/Professor')
 const Usuario = require('../models/Usuario')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-
+const mail = require('../utils/envioEmail')
 router.post('/search',async (req,res)=>{
      await Professor.findOne({where: {matricula: req.body.matricula}, attributes: ['matricula','disciplinas']}).then(prof => {
         Usuario.findOne({where: {matricula: req.body.matricula}, attributes: ['nome', 'email']}).then(user => {
@@ -21,14 +21,14 @@ router.post('/create', async (req,res)=>{
             senha: req.body.senha,
             email: req.body.email
         }).then((user)=>{
-            Professor.create({matricula: matricula, disciplinas: req.body.disciplinas}).then((prof)=>{
+            Professor.create({matricula: user.matricula, disciplinas: req.body.disciplinas}).then((prof)=>{
                 let email = {
                     titulo: "Seja Bem vindo! - Sistema de Reserva IFPB",
                     texto: "",
                     html: "<h1>Olá "+user.nome+"!</h1><br><p>Seja bem vindo ao sistema de Reservas do IFPB, nesse sistema você poderá realizar reservas de qualquer ambiente do IFPB sem precisar sair do conforto de onde você se encontra</p>"
                 }
-                let token = jwt.sign({user: user, disciplinas: prof.disciplinas}, 'sisresapi')
                 mail(user.email, email.texto, email.titulo, email.html)
+                let token = jwt.sign({user: user, disciplinas: prof.disciplinas}, 'sisresapi')
                 return res.send({token: token})
             })
         }).catch((error)=>{
