@@ -1,5 +1,25 @@
 
 
+$(document).ready(function() {
+  $('#atributoNovoProfessor').show();
+  $('#atributoNovoAluno').hide();
+  
+
+  $('#tipoDeUsuario').change(function() {
+    if ($('#tipoDeUsuario').val() === 'Aluno') {
+      $('#atributoNovoAluno').show();
+      $('#atributoNovoProfessor').hide();
+      
+    } else if ($('#tipoDeUsuario').val() === 'Professor'){
+      $('#atributoNovoProfessor').show();
+      $('#atributoNovoAluno').hide();
+    }
+  });
+});
+
+
+
+
 
 var settings = {
   "async": true,
