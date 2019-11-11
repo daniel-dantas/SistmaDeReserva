@@ -7,9 +7,11 @@ const router = express.Router()
 const Moment = require('moment')
 const momentRange = require('moment-range')
 const moment = momentRange.extendMoment(Moment)
-
+const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
+
+cors()
 router.post('/searchAvailable', (req,res) => {
     
     let ambientesLivres = []
@@ -48,7 +50,7 @@ router.get('/read', (req,res)=>{
     })
 })
 
-router.post('/create', async (req,res) => {
+router.post('/create', (req,res) => {
     
 
     // Formato em que a data precisa está dd/MM/yyyy hh:mm:ss
