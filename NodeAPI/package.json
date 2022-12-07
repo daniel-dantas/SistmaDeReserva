@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/XSrDanDanX/SistemaDeReserva#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "date-format": "^3.0.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-handlebars": "^3.1.0",
     "format-date": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
